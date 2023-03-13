@@ -4,11 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
-using System.Xml.Serialization;
-using System.Runtime.Serialization.Json;
 using Vocabulary;
 using System.Xml.Linq;
 using System.Security.Policy;
@@ -17,29 +12,18 @@ using System.Threading;
 
 namespace Vocabulary
 {
-    [Serializable]
-    [DataContract]
     public class Word
     {
-        [DataMember]
         public string word { get; set; }
-
-        [DataMember]
         public string translate { get; set; }
-
-        [DataMember]
         public string translates { get; set; } = "";
-
         public Word() { }
         public Word(string word, string translate)
         {
             this.word = word;
             this.translate = translate;
         }
-        public void AddTr(string temp)
-        {
-            translates += (temp + " ");
-        }
+        public void AddTr(string temp) { translates += (temp + " "); }
     }
 
     public interface IVocabulary
