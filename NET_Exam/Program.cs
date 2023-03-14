@@ -82,12 +82,12 @@ namespace Vocabulary
                     throw new Exception("Введен неверное значение");
 
             }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            catch (Exception e) { Console.WriteLine(e.Message); this.Start(); }
         }
         public void Menu()
         {
             Console.Clear();
-            Console.WriteLine("1. Добавить слово\n2. Удалить слово/перевод\n3. Поиск\n4. Экспорт\n5. Изменить слов/перевод");
+            Console.WriteLine("1. Добавить слово\n2. Удалить слово/перевод\n3. Поиск\n4. Экспорт\n5. Изменить слов/перевод\n0. Выход");
             int choose = Convert.ToInt32(Console.ReadLine());
             switch (choose)
             {
@@ -96,6 +96,8 @@ namespace Vocabulary
                 case 3: this.Search(); break;
                 case 4: this.Export(); break;
                 case 5: this.Change(); break;
+                case 0: break;
+                default: this.Menu(); break;
             }
         }
         public void Add()
@@ -222,6 +224,11 @@ namespace Vocabulary
                 var translate = tom.Attribute("translate");
                 var translates = tom.Element("translates");
                 Console.WriteLine("Перевод: " + translate.Value + " " + translates.Value);
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Слово небыло найдено");
                 Console.ReadLine();
             }
             this.Menu();
